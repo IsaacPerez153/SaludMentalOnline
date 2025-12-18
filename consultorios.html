@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Consultorios - MenteSana</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <style>#map{height:420px; border-radius:12px;}</style>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="index.html">
+                <img src="logo.jpg" alt="Logo MenteSana" class="logo-img">
+                <span style="font-size:40px"><strong><i>MenteSana</i></strong></span>
+            </a>
+
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="ayuda.html">Línea de ayuda</a>
+                <a href="consultorios.html">Consultorios</a>
+                <a href="agendar.html">Agendar</a>
+                <a href="tips.html">Tips</a>
+                <a href="test.html">Test</a>
+            </nav>
+        </header>
+
+        <div class="container consultorios-page">
+            <section class="card fade-in">
+                <strong><h1>Mapa de consultorios</h1></strong>
+                <h2>Pulsa "Centrar en mi ubicación" para que el mapa te localice. Haz clic en un marcador y selecciona el consultorio para agendar.</h2>
+                <div id="map" class="card"></div>
+                <div style="margin-top:12px;">
+                    <button class="btn" id="locate">Centrar en mi ubicación</button>
+                    <a class="btn" href="agendar.html" style="background:#106db9">Ir a Agendar</a>
+                </div>
+            </section>
+
+            <section class="card fade-in">
+                <strong><h1>Consultorios</h1></strong>
+                <ul id="list"></ul>
+            </section>
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            const map = L.map('map').setView([19.4326, -99.1332], 5);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+            const consultorios = [
+                {name:'Dr. Ramírez', coords:[19.423, -99.145], city:'Ciudad de México'},
+                {name:'Clínica Bienestar', coords:[20.663, -103.3918], city:'Guadalajara'},
+                {name:'PsicoVida', coords:[25.6866, -100.3161], city:'Monterrey'}
+            ];
+
+            consultorios.forEach(c=>{
+                const m = L.marker(c.coords).addTo(map).bindPopup('<strong>'+c.name+'</strong><br/>'+c.city+'<br/><button onclick="selectConsult(\''+c.name+'\')">Seleccionar</button>');
+                const li = document.createElement('li');
+                li.innerHTML = '<h2>'+c.name+'</h2> - '+ c.city+' <button onclick="zoomTo('+c.coords[0]+','+c.coords[1]+')">Ver</button>';
+                document.getElementById('list').appendChild(li);
+            });
+
+            function zoomTo(lat,lon){ map.setView([lat,lon],13); }
+            function selectConsult(name){
+                localStorage.setItem('selectedConsult', name);
+                alert('Consultorio seleccionado: '+name+'\\nVe a Agendar para fijar una cita.');
+            }
+
+            document.getElementById('locate').addEventListener('click', ()=>{
+                if(!navigator.geolocation){ alert('Geolocalización no disponible'); return; }
+                navigator.geolocation.getCurrentPosition(pos=>{
+                    const lat=pos.coords.latitude, lon=pos.coords.longitude;
+                    map.setView([lat,lon],13);
+                    L.circle([lat,lon], {radius:250, color:'#2e59d9', fillOpacity:0.08}).addTo(map).bindPopup('Tú estás aquí').openPopup();
+                }, err=>{ alert('No se pudo obtener ubicación: '+err.message); });
+            });
+        </script>
+
+        <footer><strong><h1>MenteSana</h1></strong></footer>
+    </body>
+</html>

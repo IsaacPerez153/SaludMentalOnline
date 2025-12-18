@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Salud Mental - Inicio</title><link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="index.html">
+                <img src="logo.jpg" alt="Logo MenteSana" class="logo-img">
+                <span style="font-size:40px"><strong><i>MenteSana</i></strong></span>
+            </a>
+
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="ayuda.html">Línea de ayuda</a>
+                <a href="consultorios.html">Consultorios</a>
+                <a href="agendar.html">Agendar</a>
+                <a href="tips.html">Tips</a>
+                <a href="test.html">Test</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <!-- PRESENTACIÓN -->
+            <section class="card fade-in">
+                <h1>Bienvenido a <strong>MenteSana</strong></h1>
+                <p style="font-size:18px; line-height:1.6; margin-top:10px;">
+                    En <strong>MenteSana</strong> estamos comprometidos con promover el bienestar emocional y psicológico
+                    de todas las personas. Nuestro objetivo es ofrecer un espacio accesible, confiable y gratuito donde
+                    puedas encontrar información, herramientas y apoyo para cuidar tu salud mental.
+                </p>
+
+                <p style="font-size:18px; line-height:1.6;">
+                    Buscamos crear conciencia sobre la importancia de atender nuestras emociones, acercar a la comunidad a 
+                    recursos útiles, y fomentar una cultura de autocuidado y acompañamiento. Creemos firmemente que la salud 
+                    mental debe ser una prioridad, y por eso reunimos líneas de apoyo, consultorios, artículos, videos, 
+                    técnicas de relajación y un test emocional diseñado para ayudarte a identificar señales de alerta tempranas.
+                </p>
+
+                <p style="font-size:18px; line-height:1.6;">
+                    Nuestro propósito es que encuentres orientación, comprensión y un punto de partida hacia una vida más 
+                    equilibrada y consciente. Nadie está solo: la ayuda existe, y está al alcance de todos.
+                </p>
+
+                <h3 style="margin-top:18px; color:#030453;">
+                    🌿 TU BIENESTAR ES IMPORTANTE, ESTAMOS AQUI PARA ACOMPAÑARTE. <br>
+                    ❤️‍🩹 "SENTIRSE MAL, TAMBIEN ESTA BIEN, PERO NO DEBE SER PARA SIEMPRE..."
+                </h3>
+            </section>
+        </div>
+
+        <div class="container">
+            <!-- Carousel -->
+            <section class="card fade-in">
+                <div class="carousel" id="carousel">
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=60&auto=format&fit=crop" alt="relajacion">
+                            <div class="info">
+                                <h1>Cómo manejar el estrés diario</h1>
+                                <h3>Pequeñas prácticas diarias como respiración y pausas activas pueden reducir significativamente el estrés.</h3>
+                                <a class="btn" href="tips.html">Ver tips</a>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=60&auto=format&fit=crop" alt="terapia">
+                            <div class="info">
+                                <h1>Buscar apoyo profesional</h1>
+                                <h3>Hablar con un profesional puede ayudarte a clarificar emociones y recibir estrategias concretas.</h3>
+                                <a class="btn" href="consultorios.html">Ver consultorios</a>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?w=1200&q=60&auto=format&fit=crop" alt="video">
+                            <div class="info">
+                                <h1>Videos y recursos</h1>
+                                <h3>Charlas, técnicas y guías en video para practicar desde casa.</h3>
+                                <a class="btn" href="#videos">Ver videos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <div>
+                            <button id="prev" class="icon-btn" aria-label="Anterior">&larr;</button>
+                        </div>
+                        <div>
+                            <button id="next" class="icon-btn" aria-label="Siguiente">&rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Artículos -->
+            <section class="card fade-in">
+                <h1>Artículos destacados</h1>
+                <div class="grid">
+                    <article class="card"><h2>Mindfulness para principiantes</h2><p class="muted">Cómo empezar con prácticas breves.</p><a href="tips.html" class="btn">Leer</a></article>
+                    <article class="card"><h2>Importancia del sueño</h2><p class="muted">Relación entre descanso y estado de ánimo.</p><a href="tips.html" class="btn">Leer</a></article>
+                    <article class="card"><h2>Comunicación emocional</h2><p class="muted">Aprende a expresar lo que sientes.</p><a href="tips.html" class="btn">Leer</a></article>
+                </div>
+            </section>
+
+            <!-- Videos + Fundaciones -->
+            <section class="card fade-in" id="videos">
+                <h1>Videos y fundaciones</h1>
+                <div class="grid">
+                    <div class="card">
+                        <h2>Respiración y relajación</h2>
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/EGO5m_DBzF8" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="card">
+                        <h2>Mindfulness breve</h2>
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/6p_yaNFSYao" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="card">
+                        <h2>Fundaciones recomendadas</h2>
+                        <ul>
+                            <li><a href="https://www.paho.org/es/temas/salud-mental" target="_blank" rel="noopener">Fundación Salud Mental</a></li>
+                            <li><a href="https://simisae.com.mx/" target="_blank" rel="noopener">Red de apoyo emocional</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card fade-in">
+                <h1>Accesos rápidos</h1>
+                <div class="grid">
+                    <div class="card"><h2>Línea de ayuda</h2><h3>800 911 2000</h3><a class="btn" href="ayuda.html">Contactar</a></div>
+                    <div class="card"><h2>Agendar cita</h2><h3>Selecciona un consultorio en el mapa y agenda.</h3><a class="btn" href="consultorios.html">Abrir mapa</a></div>
+                    <div class="card"><h2>Test emocional</h2><h3>Evalúa tu estado con un test de 20 preguntas.</h3><a class="btn" href="test.html">Realizar test</a></div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            /* Carousel control */
+            (function(){
+                const slidesWrap = document.querySelector('.slides');
+                const slides = document.querySelectorAll('.slide');
+                let current = 0;
+                function go(i){
+                    const n = slides.length;
+                    current = (i + n) % n;
+                    slidesWrap.style.transform = 'translateX(' + (-current*100) + '%)';
+                }
+                document.getElementById('next').addEventListener('click', ()=> go(current+1));
+                document.getElementById('prev').addEventListener('click', ()=> go(current-1));
+                let autoplay = setInterval(()=> go(current+1), 5000);
+                const carousel = document.querySelector('.carousel');
+                carousel.addEventListener('mouseenter', ()=> clearInterval(autoplay));
+                carousel.addEventListener('mouseleave', ()=> autoplay = setInterval(()=> go(current+1), 5000));
+            })();
+        </script>
+
+        <div class="container">
+            <section class="card fade-in" style="text-align:center; padding: 20px;">
+                <h1>Acerca de Nosotros</h1>
+                <p style="font-size:18px; line-height:1.6; margin-top:10px;">
+                    En <strong>MenteSana</strong> somos un equipo comprometido con el bienestar emocional, 
+                    dedicado a crear recursos accesibles y confiables para apoyar la salud mental. 
+                    Nuestro propósito es brindar información clara, herramientas prácticas y orientación 
+                    a quienes buscan mejorar su calidad de vida.
+                </p>
+
+                <!-- Galería de imágenes de la empresa -->
+                <div class="about-gallery">
+                    <img src="empresa1.jpg" alt="Equipo de trabajo">
+                    <img src="empresa2.jpg" alt="Instalaciones">
+                    <img src="logo.jpg" alt="Logo o actividad de la empresa">
+                </div>
+
+                <p style="font-size:18px; line-height:1.6;">
+                    Trabajamos con especialistas en psicología, bienestar social y desarrollo humano, 
+                    con el objetivo de crear un espacio seguro, informativo y humano para todos.
+                </p>
+            </section>
+        </div>
+
+        <footer><strong><h1>MenteSana</h1></strong></footer>
+    </body>
+</html>

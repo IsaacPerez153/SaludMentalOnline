@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Agendar - MenteSana</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="index.html">
+                <img src="logo.jpg" alt="Logo MenteSana" class="logo-img">
+                <span style="font-size:40px"><strong><i>MenteSana</i></strong></span>
+            </a>
+
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="ayuda.html">Línea de ayuda</a>
+                <a href="consultorios.html">Consultorios</a>
+                <a href="agendar.html">Agendar</a>
+                <a href="tips.html">Tips</a>
+                <a href="test.html">Test</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <section class="card fade-in agendar-card">
+                <h1>Agendar cita</h1>
+                <form id="form">
+                    <h3>Consultorio seleccionado</h3>
+                    <input type="text" id="consultorio" placeholder="Selecciona un consultorio desde el mapa" />
+                    <h3>Fecha</h3>
+                    <input type="date" id="fecha" />
+                    <h3>Nombre</h3>
+                    <input type="text" id="nombre" placeholder="Tu nombre completo" />
+                    <h3>Motivo (breve)</h3>
+                    <input type="text" id="motivo" placeholder="Ej. ansiedad, consulta inicial" />
+                    <div style="display:flex;gap:10px;margin-top:12px;">
+                        <button class="btn" type="submit">Agendar</button>
+                        <button type="button" id="clear" class="btn" style="background:#ef4444">Limpiar</button>
+                    </div>
+                </form>
+                <p id="conf" style="color:#0ba076;font-weight:700;margin-top:10px"></p>
+            </section>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', ()=>{
+                const sel = localStorage.getItem('selectedConsult');
+                if(sel) document.getElementById('consultorio').value = sel;
+            });
+
+            document.getElementById('form').addEventListener('submit', e=>{
+                e.preventDefault();
+                const c=document.getElementById('consultorio').value, f=document.getElementById('fecha').value, n=document.getElementById('nombre').value;
+                if(!c||!f||!n){ alert('Completa consultorio, fecha y nombre'); return; }
+                document.getElementById('conf').textContent = `Cita agendada con ${c} el ${f}. Confirmación simulada.`;
+                const citas = JSON.parse(localStorage.getItem('citas') || '[]');
+                citas.push({consultorio:c, fecha:f, nombre:n, motivo:document.getElementById('motivo').value});
+                localStorage.setItem('citas', JSON.stringify(citas));
+            });
+
+            document.getElementById('clear').addEventListener('click', ()=>{
+                document.getElementById('consultorio').value=''; document.getElementById('fecha').value=''; document.getElementById('nombre').value=''; document.getElementById('motivo').value='';
+            });
+        </script>
+        <footer><strong><h1>MenteSana</h1></strong></footer>
+    </body>
+</html>

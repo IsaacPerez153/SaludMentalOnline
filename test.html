@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Test emocional - MenteSana</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="index.html">
+                <img src="logo.jpg" alt="Logo MenteSana" class="logo-img">
+                <span style="font-size:40px"><strong><i>MenteSana</i></strong></span>
+            </a>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="ayuda.html">Línea de ayuda</a>
+                <a href="consultorios.html">Consultorios</a>
+                <a href="agendar.html">Agendar</a>
+                <a href="tips.html">Tips</a>
+                <a href="test.html">Test</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div 
+                style=
+                "background:#fff3cd; 
+                padding:15px; 
+                border:1px solid #ffe69c; 
+                border-radius:6px; 
+                color:#664d03; 
+                font-size: 20px;
+                margin-bottom:20px;">
+                <strong>Aviso importante:</strong> 
+                Este test NO es un instrumento diagnóstico. Úsalo únicamente con fines informativos y educativos. 
+                Para una evaluación adecuada, consulta a un psicólogo o profesional certificado.
+            </div>
+            <section class="card fade-in">
+                <h1>Test de bienestar emocional</h1>
+                <h2>Responde honestamente. 1 = Nunca, 5 = Siempre.</h2>
+                <div class="progress"><i id="bar"></i></div>
+
+                <form id="testForm">
+                    <div id="questions"></div>
+
+                    <div style="display:flex;
+                                gap:10px;
+                                margin-top:12px;">
+                        <button class="btn" type="submit" style="background:#2edd86">Evaluar</button>
+                        <button type="button" id="reset" class="btn" style="background:#ef4444">Reiniciar</button>
+                    </div>
+                </form>
+
+                <div id="result" style="margin-top:14px;font-weight:700"></div>
+            </section>
+        </div>
+
+        <script>
+            const qContainer = document.getElementById('questions');
+            const sampleQuestions = [
+            "1. Me siento triste o desanimado con frecuencia.",
+            "2. Me cuesta concentrarme en tareas diarias.",
+            "3. Siento que me preocupo demasiado.",
+            "4. Me cuesta dormir o duermo en exceso.",
+            "5. Me siento cansado/a incluso después de descansar.",
+            "6. Evito situaciones sociales por ansiedad.",
+            "7. Tengo ataques de pánico o episodios de mucha ansiedad.",
+            "8. Pierdo interés en actividades que antes disfrutaba.",
+            "9. Tengo cambios de apetito notables.",
+            "10. Me siento irritable o con rabia frecuentemente.",
+            "11. Me cuesta controlar mis pensamientos negativos.",
+            "12. Me siento abrumado por responsabilidades.",
+            "13. Siento miedo de fallar o rechazo.",
+            "14. Me cuesta relajarme aun cuando tengo tiempo libre.",
+            "15. Evito hablar de mis emociones con otros.",
+            "16. Tengo problemas de memoria recientes.",
+            "17. Siento angustia sin razón aparente.",
+            "18. Mi estado de ánimo fluctúa con facilidad.",
+            "19. Tengo pensamientos negativos persistentes.",
+            "20. He pensado que la vida no vale la pena (si es tu caso, busca ayuda inmediata)."
+            ];
+
+            for(let i=0;i<20;i++){
+                const div = document.createElement('div');
+                div.className = 'question';
+                div.innerHTML = `<label>${sampleQuestions[i]}</label>
+                <div class="radio-row">
+                    <label><input type="radio" name="q${i}" value="1" checked>1</label>
+                    <label><input type="radio" name="q${i}" value="2">2</label>
+                    <label><input type="radio" name="q${i}" value="3">3</label>
+                    <label><input type="radio" name="q${i}" value="4">4</label>
+                    <label><input type="radio" name="q${i}" value="5">5</label>
+                </div>`;
+                qContainer.appendChild(div);
+            }
+
+            const form = document.getElementById('testForm');
+            const bar = document.getElementById('bar');
+            const totalQ = 20;
+            function updateProgress(){
+                const answered = Array.from(document.querySelectorAll('.question')).filter(q=>Array.from(q.querySelectorAll('input')).some(i=>i.checked)).length;
+                bar.style.width = Math.round((answered/totalQ)*100) + '%';
+            }
+            form.addEventListener('change', updateProgress);
+            document.getElementById('reset').addEventListener('click', ()=>{ form.reset(); bar.style.width='0%'; document.getElementById('result').textContent=''; });
+
+            form.addEventListener('submit', e=>{
+                e.preventDefault();
+                let sum = 0;
+                for(let i=0;i<totalQ;i++){
+                    const v = form.elements['q'+i].value;
+                    sum += Number(v);
+                }
+                const max = totalQ*5;
+                const perc = Math.round((sum/(max))*100);
+                let cat='', rec='';
+                if(perc < 30){ 
+                    cat='Bienestar alto'; 
+                    rec='Sigue con tus prácticas saludables y revisa recursos.'; 
+                }
+                else if(perc < 60){ 
+                    cat='Bienestar moderado'; 
+                    rec='Podrías experimentar estrés leve a moderado. Intenta técnicas de higiene mental y observa si persisten.'; 
+                }
+                else { 
+                    cat='Bienestar bajo'; 
+                    rec='Se recomienda buscar apoyo profesional. Si hay riesgo inminente, contacta una línea de ayuda.'; 
+                }
+                document.getElementById('result').innerHTML = `<p>Resultado: <strong>${cat}</strong> — ${perc}%</p><p>${rec}</p>`;
+            });
+        </script>
+
+        <footer><strong><h1>MenteSana</h1></strong></footer>
+    </body>
+</html>
